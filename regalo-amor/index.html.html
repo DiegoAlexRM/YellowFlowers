@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Amarillas - Un Regalo Especial</title>
+    <style>
+        /* Estilos Generales para imitar la imagen base */
+        body {
+            background-color: #fdf5e6; /* Color crema de fondo idéntico */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #5d4037; /* Color de texto marrón oscuro */
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Contenedor principal centrado */
+        .container {
+            max-width: 650px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px; /* Espaciado entre elementos */
+        }
+
+        h2 { 
+            font-size: 2rem; 
+            font-weight: bold;
+            margin: 0; 
+        }
+
+        p { 
+            font-size: 1.3rem; 
+            line-height: 1.4; 
+            font-style: italic; 
+            margin: 0;
+        }
+
+        h3 { 
+            font-size: 1.4rem; 
+            font-weight: bold;
+            margin: 0;
+        }
+
+        /* Contenedor del GIF para centrarlo */
+        .gif-container {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Estilo para tu GIF */
+        .tu-gif {
+        display: block;
+        width: 100%;       /* Ocupará el ancho disponible */
+        max-width: 350px;  /* Pero no más de 350px */
+        height: auto;      /* Mantendrá su forma original */
+        margin: 0 auto;
+        border-radius: 15px; /* Bordes redondeados suaves en lugar de un círculo */
+}
+
+        /* Línea separadora horizontal */
+        .divider {
+            width: 100%;
+            height: 2px;
+            background-color: #8d6e63; /* Color marrón suave para la línea */
+            margin: 10px 0 20px 0;
+        }
+
+        /* Estilo del Contador */
+        .counter-section p {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .timer {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3e2723; /* Color de números más oscuro */
+            letter-spacing: 1px;
+        }
+
+        .timer span {
+            color: #8d6e63; /* Color de texto marrón claro para etiquetas */
+            font-size: 1rem;
+            font-weight: normal;
+            margin-left: 5px;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Flores Amarillas para el amor de mi vida:</h2>
+        
+        <p>Si pudiera elegir un lugar seguro, sería a tu lado.</p>
+        
+        <h3>— I Love You!</h3>
+
+        <div class="gif-container">
+            <img src="tu_regalo.gif" alt="Un regalo especial para ti" class="tu-gif">
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="counter-section">
+            <p>Mi amor por ti comenzó hace...</p>
+            <div id="timer" class="timer">
+                000<span>días</span> 00<span>horas</span> 00<span>minutos</span> 00<span>segundos</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // CONFIGURACIÓN DE FECHA: 19 de enero de 2024
+        const fechaInicio = new Date("January 19, 2024 00:00:00").getTime();
+
+        function actualizarContador() {
+            const ahora = new Date().getTime();
+            const diferencia = ahora - fechaInicio;
+
+            // Cálculos de tiempo
+            const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+            // Formatear con ceros a la izquierda
+            const d = dias; // Los días no necesitan cero extra si son > 100
+            const h = horas < 10 ? "0" + horas : horas;
+            const m = minutos < 10 ? "0" + minutos : minutos;
+            const s = segundos < 10 ? "0" + segundos : segundos;
+
+            document.getElementById("timer").innerHTML = 
+                `${d}<span>días</span> ${h}<span>horas</span> ${m}<span>minutos</span> ${s}<span>segundos</span>`;
+        }
+
+        // Ejecutar cada segundo
+        setInterval(actualizarContador, 1000);
+        actualizarContador(); // Ejecución inicial para evitar salto visual
+    </script>
+</body>
+</html>
